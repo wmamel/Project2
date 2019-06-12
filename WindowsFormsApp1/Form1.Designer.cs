@@ -46,6 +46,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Mnożenie";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -57,6 +58,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Dzielenie";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -68,6 +70,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Potęgowanie";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -79,7 +82,6 @@
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "odejmowanie";
             this.radioButton4.UseVisualStyleBackColor = true;
-            
             // 
             // textBox1
             // 
@@ -96,6 +98,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 

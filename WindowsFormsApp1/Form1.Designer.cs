@@ -28,73 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.RadioMnozenie = new System.Windows.Forms.RadioButton();
+            this.RadioDzielenie = new System.Windows.Forms.RadioButton();
+            this.RAdioPotegowanie = new System.Windows.Forms.RadioButton();
+            this.RadioOdejmowanie = new System.Windows.Forms.RadioButton();
+            this.OperationCount = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // RadioMnozenie
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(148, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 21);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Mnożenie";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.RadioMnozenie.AutoSize = true;
+            this.RadioMnozenie.Location = new System.Drawing.Point(111, 20);
+            this.RadioMnozenie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RadioMnozenie.Name = "RadioMnozenie";
+            this.RadioMnozenie.Size = new System.Drawing.Size(71, 17);
+            this.RadioMnozenie.TabIndex = 0;
+            this.RadioMnozenie.TabStop = true;
+            this.RadioMnozenie.Text = "Mnożenie";
+            this.RadioMnozenie.UseVisualStyleBackColor = true;
+            this.RadioMnozenie.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // RadioDzielenie
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(148, 52);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(87, 21);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Dzielenie";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.RadioDzielenie.AutoSize = true;
+            this.RadioDzielenie.Location = new System.Drawing.Point(111, 42);
+            this.RadioDzielenie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RadioDzielenie.Name = "RadioDzielenie";
+            this.RadioDzielenie.Size = new System.Drawing.Size(68, 17);
+            this.RadioDzielenie.TabIndex = 1;
+            this.RadioDzielenie.TabStop = true;
+            this.RadioDzielenie.Text = "Dzielenie";
+            this.RadioDzielenie.UseVisualStyleBackColor = true;
+            this.RadioDzielenie.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // radioButton3
+            // RAdioPotegowanie
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(148, 80);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(110, 21);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Potęgowanie";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.RAdioPotegowanie.AutoSize = true;
+            this.RAdioPotegowanie.Location = new System.Drawing.Point(111, 65);
+            this.RAdioPotegowanie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RAdioPotegowanie.Name = "RAdioPotegowanie";
+            this.RAdioPotegowanie.Size = new System.Drawing.Size(87, 17);
+            this.RAdioPotegowanie.TabIndex = 2;
+            this.RAdioPotegowanie.TabStop = true;
+            this.RAdioPotegowanie.Text = "Potęgowanie";
+            this.RAdioPotegowanie.UseVisualStyleBackColor = true;
+            this.RAdioPotegowanie.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
-            // radioButton4
+            // RadioOdejmowanie
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(148, 107);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(111, 21);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "odejmowanie";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.RadioOdejmowanie.AutoSize = true;
+            this.RadioOdejmowanie.Location = new System.Drawing.Point(111, 87);
+            this.RadioOdejmowanie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RadioOdejmowanie.Name = "RadioOdejmowanie";
+            this.RadioOdejmowanie.Size = new System.Drawing.Size(87, 17);
+            this.RadioOdejmowanie.TabIndex = 3;
+            this.RadioOdejmowanie.TabStop = true;
+            this.RadioOdejmowanie.Text = "odejmowanie";
+            this.RadioOdejmowanie.UseVisualStyleBackColor = true;
+            this.RadioOdejmowanie.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
-            // textBox1
+            // OperationCount
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 22);
-            this.textBox1.TabIndex = 4;
+            this.OperationCount.Location = new System.Drawing.Point(22, 43);
+            this.OperationCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OperationCount.Name = "OperationCount";
+            this.OperationCount.Size = new System.Drawing.Size(57, 20);
+            this.OperationCount.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(30, 24);
+            this.button1.Location = new System.Drawing.Point(22, 20);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(56, 19);
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -102,15 +109,16 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.OperationCount);
+            this.Controls.Add(this.RadioOdejmowanie);
+            this.Controls.Add(this.RAdioPotegowanie);
+            this.Controls.Add(this.RadioDzielenie);
+            this.Controls.Add(this.RadioMnozenie);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -120,11 +128,11 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RadioButton RadioMnozenie;
+        private System.Windows.Forms.RadioButton RadioDzielenie;
+        private System.Windows.Forms.RadioButton RAdioPotegowanie;
+        private System.Windows.Forms.RadioButton RadioOdejmowanie;
+        private System.Windows.Forms.TextBox OperationCount;
         private System.Windows.Forms.Button button1;
     }
 }

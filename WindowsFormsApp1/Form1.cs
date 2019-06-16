@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
         {
              a = 2;
              b = 3;
-            if (Int32.TryParse(OperationCount.Text, out Ilosc_operacji))
+            if (Int32.TryParse(OperationCountTB.Text, out Ilosc_operacji))
                 {
                 replicator(Ilosc_operacji);
                 //MessageBox.Show(Ilosc_operacji.ToString());

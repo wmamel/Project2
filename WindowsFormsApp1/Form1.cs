@@ -21,9 +21,10 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        //nothing in Polish in your code. Never. Ever. Especially in SDL.
         int Ilosc_operacji = 1;
 
-        
+       //consistency in naming - either Pascal case or camel case, or separating words with underscore.
         int OperationType = 1;
         //OperationType = 1;
         double a;
@@ -32,14 +33,14 @@ namespace WindowsFormsApp1
         List<Tuple<double, double>> pairs = new List<Tuple<double, double>>();
 
 
-
-        public double Licz(double a, double b, int OperationType)
+        //again, nothing in Polish
+        public double Licz(double a, double b, int OperationType) //again - consistency in casing
         {
             double b1 = 0;
             switch (OperationType)
                 {
-                    case 1: //mnozenie
-                       // MessageBox.Show("1");
+                    case 1: //mnozenie <-- using numbers and adding comments is risky and error prone (imagine having 30 types of operations) (also, comments in English)
+                       // MessageBox.Show("1"); 
                         b1 = a * b;
                         //return (double)b;
                         break;
@@ -48,7 +49,7 @@ namespace WindowsFormsApp1
                         break;
                              
                     case 3:// potegowanie
-                       // MessageBox.Show("3");
+                       // MessageBox.Show("3"); //do not leave unused/old code - remove it
                         b1 = Math.Pow(a, b);
                         //return (double)b;                           
                         break;
@@ -70,8 +71,8 @@ namespace WindowsFormsApp1
 
         private double Dzielenie(double a, double b)
         {
-            if (b==0)     
-                throw new System.DivideByZeroException();
+            if (b==0)     //use brackets with IFs, loops and others
+                throw new System.DivideByZeroException(); //good:)
             return a/b;
         }
 
@@ -89,7 +90,7 @@ namespace WindowsFormsApp1
                     SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, b.ToString());
 
                 }
-                catch (DivideByZeroException e)
+                catch (DivideByZeroException e) 
                 {
                     SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, " dzielenie przez zero");
                 }
@@ -97,7 +98,7 @@ namespace WindowsFormsApp1
                 {
                     SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, " nieprawidłowy typ działania - zhackowałeś UI");
                 }
-
+                //you are only catching specific types of errors. What if a Null reference error happens?
                 
                // MessageBox.Show(b.ToString());
             }
@@ -105,10 +106,10 @@ namespace WindowsFormsApp1
         }
 
  
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //what is button1? it makes sense to add proper name to button (e.g. StartButton) and to method (e.g. StartButton_Click)
 
         {
-            pairs.Clear(); //czyszczenie listy 
+            pairs.Clear(); //czyszczenie listy <-- quite unnecessary comment, no need to add such comments
             if (File.Exists(PathTB.Text))
             {
                 ReadXML(PathTB.Text);
@@ -127,19 +128,19 @@ namespace WindowsFormsApp1
                             }
 
                         }
-                    else
+                    else //brackets
                         MessageBox.Show("Brak prawidłowych wartosci w XML");
                 }
                 else
                 {
-                    MessageBox.Show("Podana wartośc nie jest liczbą całkowitą");
+                    MessageBox.Show("Podana wartośc nie jest liczbą całkowitą"); //when saying 'something is wrong', it is good to include the details on what is wrong, and the provided value
                 }
                 
 
             }
             else
             {
-                MessageBox.Show("podana ścieżka jest nieprawidłowa");
+                MessageBox.Show("podana ścieżka jest nieprawidłowa");//when saying 'something is wrong', it is good to include the details on what is wrong, and the provided value
             }
 
 
@@ -155,8 +156,8 @@ namespace WindowsFormsApp1
             Boolean bexist =false;
             double valA = 0;
             double valB = 0;
-            XmlTextReader reader = new XmlTextReader (path);
-                
+            XmlTextReader reader = new XmlTextReader (path); //XmlTextReader should be disposed
+                //if there are problems with XML, app will crash 
             while (reader.Read()) 
             {
                 switch (reader.NodeType) 
@@ -211,8 +212,12 @@ namespace WindowsFormsApp1
         SaveLog(logline);    
         }
 
+
+        //these two logging methods could be improved so they leverage from each other instead of duplicating code
         private void SaveLog(int operation_no, int Ilosc_operacji, string OperationType_string, double a, double b, string wynik)
             {
+                //your log box is editable, should be read only...
+                //and is missing some formatting
                 string logLine = $"Operacja : " + operation_no.ToString() + "/" + Ilosc_operacji.ToString() +  " | " + a.ToString() + OperationType_string + b.ToString() +" = "+wynik;
                 ErrorLogTB.AppendText(logLine + "\n");
                 using (System.IO.StreamWriter file = 
@@ -221,7 +226,7 @@ namespace WindowsFormsApp1
                         file.WriteLine(logLine);
                     }
             }
-        private void SaveLog(string a)
+        private void SaveLog(string a) //do not use single letter variable names
             {
             ErrorLogTB.AppendText(a + "\n");
             using (System.IO.StreamWriter file = 

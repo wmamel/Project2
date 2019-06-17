@@ -38,12 +38,15 @@
             this.PathTB = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ErrorLogTB = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // RadioMnozenie
             // 
             this.RadioMnozenie.AutoSize = true;
-            this.RadioMnozenie.Location = new System.Drawing.Point(148, 25);
+            this.RadioMnozenie.Location = new System.Drawing.Point(29, 43);
             this.RadioMnozenie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RadioMnozenie.Name = "RadioMnozenie";
             this.RadioMnozenie.Size = new System.Drawing.Size(90, 21);
@@ -56,7 +59,7 @@
             // RadioDzielenie
             // 
             this.RadioDzielenie.AutoSize = true;
-            this.RadioDzielenie.Location = new System.Drawing.Point(148, 52);
+            this.RadioDzielenie.Location = new System.Drawing.Point(29, 70);
             this.RadioDzielenie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RadioDzielenie.Name = "RadioDzielenie";
             this.RadioDzielenie.Size = new System.Drawing.Size(87, 21);
@@ -69,7 +72,7 @@
             // RAdioPotegowanie
             // 
             this.RAdioPotegowanie.AutoSize = true;
-            this.RAdioPotegowanie.Location = new System.Drawing.Point(148, 80);
+            this.RAdioPotegowanie.Location = new System.Drawing.Point(29, 98);
             this.RAdioPotegowanie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RAdioPotegowanie.Name = "RAdioPotegowanie";
             this.RAdioPotegowanie.Size = new System.Drawing.Size(110, 21);
@@ -82,7 +85,7 @@
             // RadioOdejmowanie
             // 
             this.RadioOdejmowanie.AutoSize = true;
-            this.RadioOdejmowanie.Location = new System.Drawing.Point(148, 107);
+            this.RadioOdejmowanie.Location = new System.Drawing.Point(29, 125);
             this.RadioOdejmowanie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RadioOdejmowanie.Name = "RadioOdejmowanie";
             this.RadioOdejmowanie.Size = new System.Drawing.Size(111, 21);
@@ -94,28 +97,28 @@
             // 
             // OperationCountTB
             // 
-            this.OperationCountTB.Location = new System.Drawing.Point(29, 53);
+            this.OperationCountTB.Location = new System.Drawing.Point(29, 348);
             this.OperationCountTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OperationCountTB.Name = "OperationCountTB";
-            this.OperationCountTB.Size = new System.Drawing.Size(75, 22);
+            this.OperationCountTB.Size = new System.Drawing.Size(87, 22);
             this.OperationCountTB.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(29, 25);
+            this.button1.Location = new System.Drawing.Point(140, 335);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(95, 35);
             this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
+            this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PathTB
             // 
-            this.PathTB.Location = new System.Drawing.Point(29, 150);
+            this.PathTB.Location = new System.Drawing.Point(29, 400);
             this.PathTB.Name = "PathTB";
-            this.PathTB.Size = new System.Drawing.Size(294, 22);
+            this.PathTB.Size = new System.Drawing.Size(749, 22);
             this.PathTB.TabIndex = 6;
             // 
             // contextMenuStrip1
@@ -126,17 +129,47 @@
             // 
             // ErrorLogTB
             // 
-            this.ErrorLogTB.Location = new System.Drawing.Point(357, 12);
+            this.ErrorLogTB.Location = new System.Drawing.Point(311, 42);
             this.ErrorLogTB.Multiline = true;
             this.ErrorLogTB.Name = "ErrorLogTB";
-            this.ErrorLogTB.Size = new System.Drawing.Size(422, 410);
+            this.ErrorLogTB.Size = new System.Drawing.Size(467, 345);
             this.ErrorLogTB.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 329);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Ilość operacji";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(26, 380);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Ścieżka do XML";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(308, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 17);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Log";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ErrorLogTB);
             this.Controls.Add(this.PathTB);
             this.Controls.Add(this.button1);
@@ -164,6 +197,9 @@
         private System.Windows.Forms.TextBox PathTB;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox ErrorLogTB;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

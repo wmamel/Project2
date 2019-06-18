@@ -179,9 +179,12 @@
             this.Controls.Add(this.RAdioPotegowanie);
             this.Controls.Add(this.RadioDzielenie);
             this.Controls.Add(this.RadioMnozenie);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Prog 2";
             this.ResumeLayout(false);
             this.PerformLayout();
 

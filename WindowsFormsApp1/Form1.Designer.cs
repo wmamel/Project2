@@ -34,7 +34,7 @@
             this.RAdioPotegowanie = new System.Windows.Forms.RadioButton();
             this.RadioOdejmowanie = new System.Windows.Forms.RadioButton();
             this.OperationCountTB = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.StartBT = new System.Windows.Forms.Button();
             this.PathTB = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ErrorLogTB = new System.Windows.Forms.TextBox();
@@ -103,16 +103,16 @@
             this.OperationCountTB.Size = new System.Drawing.Size(87, 22);
             this.OperationCountTB.TabIndex = 4;
             // 
-            // button1
+            // StartBT
             // 
-            this.button1.Location = new System.Drawing.Point(140, 335);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 35);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.StartBT.Location = new System.Drawing.Point(140, 335);
+            this.StartBT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.StartBT.Name = "StartBT";
+            this.StartBT.Size = new System.Drawing.Size(95, 35);
+            this.StartBT.TabIndex = 5;
+            this.StartBT.Text = "Start";
+            this.StartBT.UseVisualStyleBackColor = true;
+            this.StartBT.Click += new System.EventHandler(this.StartBT_Click);
             // 
             // PathTB
             // 
@@ -132,6 +132,7 @@
             this.ErrorLogTB.Location = new System.Drawing.Point(311, 42);
             this.ErrorLogTB.Multiline = true;
             this.ErrorLogTB.Name = "ErrorLogTB";
+            this.ErrorLogTB.ReadOnly = true;
             this.ErrorLogTB.Size = new System.Drawing.Size(467, 345);
             this.ErrorLogTB.TabIndex = 8;
             // 
@@ -172,7 +173,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ErrorLogTB);
             this.Controls.Add(this.PathTB);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.StartBT);
             this.Controls.Add(this.OperationCountTB);
             this.Controls.Add(this.RadioOdejmowanie);
             this.Controls.Add(this.RAdioPotegowanie);
@@ -193,7 +194,7 @@
         private System.Windows.Forms.RadioButton RAdioPotegowanie;
         private System.Windows.Forms.RadioButton RadioOdejmowanie;
         private System.Windows.Forms.TextBox OperationCountTB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button StartBT;
         private System.Windows.Forms.TextBox PathTB;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox ErrorLogTB;

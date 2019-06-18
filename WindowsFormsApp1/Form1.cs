@@ -21,42 +21,44 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-        //nothing in Polish in your code. Never. Ever. Especially in SDL.
-        int Ilosc_operacji = 1;
+        
+        int numberofoperations = 1;
 
-       //consistency in naming - either Pascal case or camel case, or separating words with underscore.
-        int OperationType = 1;
-        //OperationType = 1;
+      
+        string operationtype = "multiplication";
+        
         double a;
         double b;
-        string OperationType_string = "*";
+        string operationtype_string = "*";
         List<Tuple<double, double>> pairs = new List<Tuple<double, double>>();
 
 
-        //again, nothing in Polish
-        public double Licz(double a, double b, int OperationType) //again - consistency in casing
+        
+        public double Calculate(double a, double b, string operationtype) 
         {
             double b1 = 0;
-            switch (OperationType)
+            switch (operationtype)
                 {
-                    case 1: //mnozenie <-- using numbers and adding comments is risky and error prone (imagine having 30 types of operations) (also, comments in English)
-                       // MessageBox.Show("1"); 
+                    case "multiplication": 
+
                         b1 = a * b;
-                        //return (double)b;
+                        
                         break;
-                    case 2: // dzielenie
-                        b1 = Dzielenie(a,b);
+                    case "division":
+                        b1 = Divide(a,b);
                         break;
                              
-                    case 3:// potegowanie
-                       // MessageBox.Show("3"); //do not leave unused/old code - remove it
+                    case "exponentiation":
+
+
                         b1 = Math.Pow(a, b);
-                        //return (double)b;                           
+                                     
                         break;
-                    case 4: //odejmowanie
-                       // MessageBox.Show("4");
+                    case "subtraction": 
+
+
                         b1 = a - b;
-                        //return (double)b;
+                        
                         break;
                     default:
 
@@ -64,83 +66,89 @@ namespace WindowsFormsApp1
                         
                         break;
                 }
-            //SaveLog(operation_no, Ilosc_operacji)
+
             return b1;
             
             }
 
-        private double Dzielenie(double a, double b)
+        private double Divide(double a, double b)
         {
-            if (b==0)     //use brackets with IFs, loops and others
-                throw new System.DivideByZeroException(); //good:)
+            if (b == 0)
+            {
+                throw new System.DivideByZeroException();
+            }
             return a/b;
         }
 
-        private void replicator(int Ilosc_operacji)
+        private void Replicator(int numberofoperations)
         {
             double current_b; 
             
-            for (int j = 0; j<Ilosc_operacji; j++)
+            for (int j = 0; j<numberofoperations; j++)
 
             {
                 current_b = b;
                 try
                 {
-                    b = Licz(a, b, OperationType);
-                    SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, b.ToString());
+                    b = Calculate(a, b, operationtype);
+                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, b.ToString());
 
                 }
                 catch (DivideByZeroException e) 
                 {
-                    SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, " dzielenie przez zero");
+                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, " Divide by zero");
                 }
                 catch (InvalidCastException e)
                 {
-                    SaveLog(j+1, Ilosc_operacji, OperationType_string, a, current_b, " nieprawidłowy typ działania - zhackowałeś UI");
+                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, " Incorrect calculation type");
+                }
+                catch (Exception e)
+                {
+                    SaveLog("i can't imagine what must happen to show this"); 
                 }
                 //you are only catching specific types of errors. What if a Null reference error happens?
+                // WM:does this solve your comment?
                 
-               // MessageBox.Show(b.ToString());
+               
             }
 
         }
 
  
-        private void button1_Click(object sender, EventArgs e) //what is button1? it makes sense to add proper name to button (e.g. StartButton) and to method (e.g. StartButton_Click)
+        private void StartBT_Click(object sender, EventArgs e) 
 
         {
-            pairs.Clear(); //czyszczenie listy <-- quite unnecessary comment, no need to add such comments
+            pairs.Clear(); 
             if (File.Exists(PathTB.Text))
             {
                 ReadXML(PathTB.Text);
-                if (Int32.TryParse(OperationCountTB.Text, out Ilosc_operacji))
+                if (Int32.TryParse(OperationCountTB.Text, out numberofoperations))
                     {
-                  //  replicator(Ilosc_operacji);
-                    //MessageBox.Show(Ilosc_operacji.ToString());
-                    //Ilosc_operacji = Int32.Parse(OperationCount.Text);
-                    if (pairs.Count>0)
+                    if (pairs.Count > 0)
+                    {
+                        foreach (var pair in pairs)
                         {
-                            foreach (var pair in pairs)
-                            {
-                                a = pair.Item1;
-                                b = pair.Item2;
-                                replicator(Ilosc_operacji);
-                            }
-
+                            a = pair.Item1;
+                            b = pair.Item2;
+                            Replicator(numberofoperations);
                         }
-                    else //brackets
-                        MessageBox.Show("Brak prawidłowych wartosci w XML");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("XML doesn;t contain any valid pairs of 'a' and 'b' attributes");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Podana wartośc nie jest liczbą całkowitą"); //when saying 'something is wrong', it is good to include the details on what is wrong, and the provided value
+                    MessageBox.Show(String.Format("This: {0} is not an integer", OperationCountTB.Text)); 
                 }
                 
 
             }
             else
             {
-                MessageBox.Show("podana ścieżka jest nieprawidłowa");//when saying 'something is wrong', it is good to include the details on what is wrong, and the provided value
+                MessageBox.Show(String.Format("File under given path doesn't exist.\r\n{0}", PathTB));
             }
 
 
@@ -151,7 +159,7 @@ namespace WindowsFormsApp1
         private void ReadXML(string path)
         {
             string logline ="Wartości w XML: \r\n";
-            int licznik =0;
+            int count =0;
             Boolean aexist = false;
             Boolean bexist =false;
             double valA = 0;
@@ -179,7 +187,7 @@ namespace WindowsFormsApp1
                                             }
                                         else
                                             {
-                                            // a istnieje ale nie jest 'double"
+                                            // a exist but not a 'double' type
                                             }
                                         break;
                                         
@@ -190,78 +198,75 @@ namespace WindowsFormsApp1
                                         }
                                         else
                                         {
-                                            // b istnieje  ale nie jest 'double"
+                                            // b exist but not a 'double' type
                                         }
                                         break;
                                     }
 
                                 }
-                            if((bexist) & (aexist))// dany element ma a i b oraz obydwa pasuja do double
+                            if((bexist) & (aexist))// xml element contain a and b and both are 'double' type
                                 {
-                                licznik++;
+                                count++;
 
                                 pairs.Add(Tuple.Create(valA,valB));
-                                logline+=String.Format("{0}: a={1}, b={2}\r\n", licznik, valA.ToString(), valB.ToString());
+                                logline+=String.Format("{0}: a={1}, b={2}\r\n", count, valA.ToString(), valB.ToString());
                                 
                                 }
                         
                         }
-                        break;// if(reader.Name=="value")
-                }//switch
-            }//while (reader.Read()) 
+                        break;
+                }
+            }
         SaveLog(logline);    
         }
 
 
-        //these two logging methods could be improved so they leverage from each other instead of duplicating code
-        private void SaveLog(int operation_no, int Ilosc_operacji, string OperationType_string, double a, double b, string wynik)
+        
+        private void CombineAndSaveLog(int operation_no, int numberofoperations, string operationtype_string, double a, double b, string wynik)
             {
-                //your log box is editable, should be read only...
+                
                 //and is missing some formatting
-                string logLine = $"Operacja : " + operation_no.ToString() + "/" + Ilosc_operacji.ToString() +  " | " + a.ToString() + OperationType_string + b.ToString() +" = "+wynik;
-                ErrorLogTB.AppendText(logLine + "\n");
-                using (System.IO.StreamWriter file = 
-                new System.IO.StreamWriter(Path.GetDirectoryName(PathTB.Text) + "\\log.txt", true))
-                    {
-                        file.WriteLine(logLine);
-                    }
+                //WM: What kind of formating?
+                string logLine = $"Operacja : " + operation_no.ToString() + "/" + numberofoperations.ToString() +  " | " + a.ToString() + operationtype_string + b.ToString() +" = "+wynik;
+                SaveLog(logLine);
+   
             }
-        private void SaveLog(string a) //do not use single letter variable names
+        private void SaveLog(string message) 
             {
-            ErrorLogTB.AppendText(a + "\n");
+            ErrorLogTB.AppendText(message + "\n");
             using (System.IO.StreamWriter file = 
                 new System.IO.StreamWriter(Path.GetDirectoryName(PathTB.Text) + "\\log.txt", true))
                     {
-                        file.WriteLine(a);
+                        file.WriteLine(message);
                     }
             }
-
+         
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            OperationType = 1;
-            OperationType_string = "*";
+            operationtype = "multiplication";
+            operationtype_string = "*";
 
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            OperationType = 2;
-            OperationType_string = "/";
+            operationtype = "division";
+            operationtype_string = "/";
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            OperationType = 3;
-            OperationType_string = "^";
+            operationtype = "exponentiation";
+            operationtype_string = "^";
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            OperationType = 4;
-            OperationType_string = "-";
+            operationtype = "subtraction";
+            operationtype_string = "-";
         }
 
-        
+
     }
     
 

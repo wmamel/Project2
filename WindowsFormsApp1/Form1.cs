@@ -13,63 +13,65 @@ using System.IO;
 
 namespace WindowsFormsApp1
 {
-    
-    
+
+
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
-        
+
         int numberofoperations = 1;
 
-      
+
         string operationtype = "multiplication";
-        
+
         double a;
         double b;
+        double valA;
+        double valB;
         string operationtype_string = "*";
         List<Tuple<double, double>> pairs = new List<Tuple<double, double>>();
 
 
-        
-        public double Calculate(double a, double b, string operationtype) 
+
+        public double Calculate(double a, double b, string operationtype)
         {
             double b1 = 0;
             switch (operationtype)
-                {
-                    case "multiplication": 
+            {
+                case "multiplication":
 
-                        b1 = a * b;
-                        
-                        break;
-                    case "division":
-                        b1 = Divide(a,b);
-                        break;
-                             
-                    case "exponentiation":
+                    b1 = a * b;
 
+                    break;
+                case "division":
+                    b1 = Divide(a, b);
+                    break;
 
-                        b1 = Math.Pow(a, b);
-                                     
-                        break;
-                    case "subtraction": 
+                case "exponentiation":
 
 
-                        b1 = a - b;
-                        
-                        break;
-                    default:
+                    b1 = Math.Pow(a, b);
 
-                        throw new System.InvalidCastException();
-                        
-                        break;
-                }
+                    break;
+                case "subtraction":
+
+
+                    b1 = a - b;
+
+                    break;
+                default:
+
+                    throw new System.InvalidCastException();
+
+                    break;
+            }
 
             return b1;
-            
-            }
+
+        }
 
         private double Divide(double a, double b)
         {
@@ -77,53 +79,53 @@ namespace WindowsFormsApp1
             {
                 throw new System.DivideByZeroException();
             }
-            return a/b;
+            return a / b;
         }
 
         private void Replicator(int numberofoperations)
         {
-            double current_b; 
-            
-            for (int j = 0; j<numberofoperations; j++)
+            double current_b;
+
+            for (int j = 0; j < numberofoperations; j++)
 
             {
                 current_b = b;
                 try
                 {
                     b = Calculate(a, b, operationtype);
-                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, b.ToString());
+                    CombineAndSaveLog(j + 1, numberofoperations, operationtype_string, a, current_b, b.ToString());
 
                 }
-                catch (DivideByZeroException e) 
+                catch (DivideByZeroException e)
                 {
-                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, " Divide by zero");
+                    CombineAndSaveLog(j + 1, numberofoperations, operationtype_string, a, current_b, " Divide by zero");
                 }
                 catch (InvalidCastException e)
                 {
-                    CombineAndSaveLog(j+1, numberofoperations, operationtype_string, a, current_b, " Incorrect calculation type");
+                    CombineAndSaveLog(j + 1, numberofoperations, operationtype_string, a, current_b, " Incorrect calculation type");
                 }
                 catch (Exception e)
                 {
-                    SaveLog("i can't imagine what must happen to show this"); 
+                    SaveLog("i can't imagine what must happen to show this");
                 }
                 //you are only catching specific types of errors. What if a Null reference error happens?
                 // WM:does this solve your comment?
-                
-               
+
+
             }
 
         }
 
- 
-        private void StartBT_Click(object sender, EventArgs e) 
+
+        private void StartBT_Click(object sender, EventArgs e)
 
         {
-            pairs.Clear(); 
+            pairs.Clear();
             if (File.Exists(PathTB.Text))
             {
                 ReadXML(PathTB.Text);
                 if (Int32.TryParse(OperationCountTB.Text, out numberofoperations))
-                    {
+                {
                     if (pairs.Count > 0)
                     {
                         foreach (var pair in pairs)
@@ -141,9 +143,9 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    MessageBox.Show(String.Format("This: {0} is not an integer", OperationCountTB.Text)); 
+                    MessageBox.Show(String.Format("This: {0} is not an integer", OperationCountTB.Text));
                 }
-                
+
 
             }
             else
@@ -158,89 +160,69 @@ namespace WindowsFormsApp1
 
         private void ReadXML(string path)
         {
-            string logline ="Wartości w XML: \r\n";
-            int count =0;
-            Boolean aexist = false;
-            Boolean bexist =false;
+            string logline = "Values in XML: \r\n";
+            int count = 0;
             double valA = 0;
             double valB = 0;
-            XmlTextReader reader = new XmlTextReader (path); //XmlTextReader should be disposed
-                //if there are problems with XML, app will crash 
-            while (reader.Read()) 
+            using (XmlTextReader reader = new XmlTextReader(path)) 
             {
-                switch (reader.NodeType) 
+                try
                 {
-                    case XmlNodeType.Element:
-                        if(reader.Name=="value")
+                    while (reader.Read())
+                    {
+                        switch (reader.NodeType)
                         {
-                            aexist=false;
-                            bexist=false;
-                            
-                            while (reader.MoveToNextAttribute())
+                            case XmlNodeType.Element:
+                                if (reader.Name == "value")
                                 {
-                                switch (reader.Name)
+                                    if (Double.TryParse(reader.GetAttribute("a"), out valA) && Double.TryParse(reader.GetAttribute("b"), out valB))
                                     {
-                                    case "a":
-                                        if (Double.TryParse(reader.Value, out valA))
-                                            {
-                                            aexist =true;
-                                            }
-                                        else
-                                            {
-                                            // a exist but not a 'double' type
-                                            }
-                                        break;
-                                        
-                                    case "b":
-                                        if (Double.TryParse(reader.Value, out valB))
-                                        {
-                                            bexist =true;
-                                        }
-                                        else
-                                        {
-                                            // b exist but not a 'double' type
-                                        }
-                                        break;
+                                        count++;
+                                        pairs.Add(Tuple.Create(valA, valB));
+                                        logline += String.Format("{0}: a={1}, b={2}\r\n", count, valA.ToString(), valB.ToString());
                                     }
+                                    else
+                                    {
 
+                                    }
+                                    
                                 }
-                            if((bexist) & (aexist))// xml element contain a and b and both are 'double' type
-                                {
-                                count++;
-
-                                pairs.Add(Tuple.Create(valA,valB));
-                                logline+=String.Format("{0}: a={1}, b={2}\r\n", count, valA.ToString(), valB.ToString());
-                                
-                                }
-                        
+                                break;
                         }
-                        break;
+                    }
+                }
+
+                catch (XmlException e)
+                {
+                    MessageBox.Show(e.Message.ToString());
+                    SaveLog(e.Message.ToString());
                 }
             }
-        SaveLog(logline);    
+
+            SaveLog(logline);
         }
 
 
-        
+
         private void CombineAndSaveLog(int operation_no, int numberofoperations, string operationtype_string, double a, double b, string wynik)
-            {
-                
-                //and is missing some formatting
-                //WM: What kind of formating?
-                string logLine = $"Operacja : " + operation_no.ToString() + "/" + numberofoperations.ToString() +  " | " + a.ToString() + operationtype_string + b.ToString() +" = "+wynik;
-                SaveLog(logLine);
-   
-            }
-        private void SaveLog(string message) 
-            {
+        {
+
+            //and is missing some formatting
+            //WM: What kind of formating?
+            string logLine = $"Operation : " + operation_no.ToString() + "/" + numberofoperations.ToString() + " | " + a.ToString() + operationtype_string + b.ToString() + " = " + wynik;
+            SaveLog(logLine);
+
+        }
+        private void SaveLog(string message)
+        {
             ErrorLogTB.AppendText(message + "\n");
-            using (System.IO.StreamWriter file = 
+            using (System.IO.StreamWriter file =
                 new System.IO.StreamWriter(Path.GetDirectoryName(PathTB.Text) + "\\log.txt", true))
-                    {
-                        file.WriteLine(message);
-                    }
+            {
+                file.WriteLine(message);
             }
-         
+        }
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             operationtype = "multiplication";
@@ -268,10 +250,4 @@ namespace WindowsFormsApp1
 
 
     }
-    
-
-
-
-
-
 }
